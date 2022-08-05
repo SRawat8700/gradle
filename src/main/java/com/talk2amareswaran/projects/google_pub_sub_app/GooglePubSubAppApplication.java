@@ -35,7 +35,7 @@ public class GooglePubSubAppApplication {
 	@Bean
 	public PubSubInboundChannelAdapter messageChannelAdapter(
 			@Qualifier("pubsubInputChannel") MessageChannel inputChannel, PubSubOperations pubSubTemplate) {
-		PubSubInboundChannelAdapter adapter = new PubSubInboundChannelAdapter(pubSubTemplate, "testSubscription");
+		PubSubInboundChannelAdapter adapter = new PubSubInboundChannelAdapter(pubSubTemplate, "testsubscription");
 		adapter.setOutputChannel(inputChannel);
 		adapter.setAckMode(AckMode.MANUAL);
 		return adapter;
@@ -57,7 +57,7 @@ public class GooglePubSubAppApplication {
 	@Bean
 	@ServiceActivator(inputChannel = "pubsubOutputChannel")
 	public MessageHandler messageSender(PubSubOperations pubsubTemplate) {
-		return new PubSubMessageHandler(pubsubTemplate, "testTopic");
+		return new PubSubMessageHandler(pubsubTemplate, "testtopic");
 	}
 
 	// Create Messaging Gateway interface to publish the message
